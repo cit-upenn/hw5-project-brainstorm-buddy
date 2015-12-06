@@ -2,6 +2,10 @@ package hw5;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.PrintWriter;
+import java.util.Scanner;
+
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
@@ -15,17 +19,19 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
 	private JMenu file;
 	private JMenuItem open,save;
 	
+	private JScrollPane textScroll; 
+	
 	private JTextArea textArea;
 	private JPanel checkBoxPanel, encycSettingPanel, newsOptionsPanel;;//Encyclopedia, Dictionary, Websites 
 	private JCheckBox encyc, news, dict, links;
 	private JComboBox<String> newsSourceOptions;
 	private JComboBox<String> encycOptions;
 	
-	private String [] newsSources = {"","BBC", "Google Scholar", "CNN"};
+	private String [] newsSources = {"BBC", "Google Scholar", "CNN"};
 	private String [] encycSettings = {"","Snippets and Links", "Just Links"};
 	private JButton createResources;
 	private GridLayout tester = new GridLayout(3,2);
-    private final int WINDOW_HEIGHT = 550;
+    private final int WINDOW_HEIGHT = 570;
     private final int WINDOW_WIDTH = 700;
     
     
@@ -41,6 +47,7 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
 //    	snippet = new JRadioButton("Snippets and Links");
     	fileChooser = new JFileChooser();
     	textArea = new JTextArea();
+    	textArea.setEditable(true);
     	checkBoxPanel = new JPanel();
     	newsOptionsPanel = new JPanel();
     	encyc = new JCheckBox("Encyclopedia");
@@ -52,6 +59,7 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
     	encycOptions = new JComboBox<>(encycSettings);
     	createResources = new JButton("Create Resource Document");
     	
+    	textScroll = new JScrollPane(textArea);
     	
     	//set layouts
     	frame.setLayout(new BorderLayout());
@@ -66,7 +74,7 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
     	
     	
     	//add elements to containers
-    	frame.add(textArea);
+    	frame.add(textScroll, BorderLayout.CENTER);
     	file.add(open);
     	file.add(save);
     	menuBar.add(file);
@@ -104,7 +112,13 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
     	newsSourceOptions.addActionListener(this);
     	encyc.addActionListener(this);
     	encycOptions.addActionListener(this);
+    	dict.addActionListener(this);
+    	links.addActionListener(this);
     	
+    	OpenFileListener ofl = new OpenFileListener();
+    	open.addActionListener(ofl);
+    	SaveFileListener sfl = new SaveFileListener();
+    	save.addActionListener(sfl);
     }
    
     public static void main(String[] args) {
@@ -155,26 +169,49 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
 		 if (which.getSource().equals(encyc)){
 			 if(encyc.isSelected()){
 				//set some encyclopedia master boolean true
-				 System.out.println("button is selected");
-				 int index = encycOptions.getSelectedIndex();
-				 switch(index){
-				 	case(1):{
-				 		//set some boolean true, others false
-				 		System.out.println("Snippets");
-				 		break;
-				 	}
-				 	case(2):{
-				 		//set some boolean true, others false
-				 		System.out.println("Snippets");
-				 		break;
-				 	}
-				 }
-				 
+				 System.out.println("button is selected");				 
 			 } else {
 				//set some encyclopedia master boolean false
+				//encycOptions booleans are irrelevant? 
 				 System.out.println("button is not selected");
 				
 			 } 
+		 }
+		 if (which.getSource().equals(encycOptions)){
+			 int index = encycOptions.getSelectedIndex();
+			 switch(index){
+			 	case(1):{
+			 		//set some boolean true, others false
+			 		System.out.println("Snippets");
+			 		break;
+			 	}
+			 	case(2):{
+			 		//set some boolean true, others false
+			 		System.out.println("Just Links");
+			 		break;
+			 	}
+			 }
+		 }
+		 if (which.getSource().equals(dict)){
+			 if (dict.isSelected()){
+				 //set some boolean true
+				 System.out.println("dictionary button");
+			 }
+			 else{
+				 //set some boolean false
+			 }
+			 
+		 }
+		 
+		 if (which.getSource().equals(links)){
+			 if (dict.isSelected()){
+				 //set some boolean true
+				 System.out.println("websites button");
+			 }
+			 else{
+				 //set some boolean false
+			 }
+			 
 		 }
 		 
 		 
@@ -183,17 +220,17 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
 					//can get rid of, put it all in if which == news and news.isSelected()
 					int index = newsSourceOptions.getSelectedIndex();
 					switch(index){
-				 		case(1):{
+				 		case(0):{
 				 			//set some boolean true, others false
 				 			System.out.println("BBC selected");
 				 			break;
 				 		}
-				 		case(2):{
+				 		case(1):{
 				 			//set some boolean true, others false
 				 			System.out.println("Google Scholar selected");
 				 			break;
 				 		}
-				 		case(3):{
+				 		case(2):{
 				 			//set some boolean true, others false
 				 			System.out.println("CNN selected");
 				 			break;
@@ -204,4 +241,65 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
 			 }
 		
 	}
+	
+	class OpenFileListener implements ActionListener {
+
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			if (JFileChooser.APPROVE_OPTION == fileChooser.showOpenDialog(frame)) {
+				textArea.setText("");
+				File file = fileChooser.getSelectedFile();
+				Scanner in = null;
+				try
+				{
+					in = new Scanner(file);
+					// keep reading while there is more to read
+					while (in.hasNext())
+					{
+						// read an entire line
+						String line = in.nextLine();
+						textArea.append(line+"\n");
+					}
+				} catch(Exception ea) {
+					ea.printStackTrace();				
+				} finally {
+					in.close();
+				}
+			}
+		}
+	}
+	
+	class SaveFileListener implements ActionListener {
+
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			if (JFileChooser.APPROVE_OPTION == fileChooser.showSaveDialog(frame)) {
+				// create a null PrintWriter outside the try block
+				PrintWriter out = null;
+				try {
+					// create the File
+					File file = fileChooser.getSelectedFile();
+
+					// initialize the PrintWriter
+					out = new PrintWriter(file);
+
+					// this is the String I will write to the file
+					String output = textArea.getText();
+
+					// now write to the file
+					out.println(output);
+
+				} catch(Exception ea) {
+					ea.printStackTrace();				
+				}finally {
+				    // this is stuff that MUST happen
+				    try { out.flush(); } catch (Exception ex) { }
+				    try { out.close(); } catch (Exception ex) { }
+				}
+
+			}
+		}
+	}
+	
+	
 }
