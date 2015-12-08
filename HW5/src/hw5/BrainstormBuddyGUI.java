@@ -104,7 +104,8 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
     	
     	
     	//initialize listeners
-    	
+    	OpenFileListener ofl = new OpenFileListener();
+    	SaveFileListener sfl = new SaveFileListener();
     	
     	
     	//add listeners
@@ -115,9 +116,8 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
     	dict.addActionListener(this);
     	links.addActionListener(this);
     	
-    	OpenFileListener ofl = new OpenFileListener();
+    	
     	open.addActionListener(ofl);
-    	SaveFileListener sfl = new SaveFileListener();
     	save.addActionListener(sfl);
     }
    
@@ -134,14 +134,13 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
 		createResources.setBorder(BorderFactory.createLoweredBevelBorder());
+		//connect to resource parser
 	}
 
 	@Override
@@ -152,13 +151,11 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
