@@ -1,4 +1,4 @@
-package brainstorm.buddy;
+package resourcesgui;
 
 
 import java.io.File;
@@ -10,7 +10,7 @@ import java.util.Scanner;
  * @author meredithmargulies
  *
  */
-public class MyFileReader {
+public class FileReader {
 
 	private String filename;
 	private ArrayList<String> lines;
@@ -19,7 +19,7 @@ public class MyFileReader {
 	 * This is the constructor
 	 * @param file the file to read
 	 */
-	public MyFileReader(String file) {
+	public FileReader(String file) {
 		filename = file;
 		
 		lines = new ArrayList<String>();

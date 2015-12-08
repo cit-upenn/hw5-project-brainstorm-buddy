@@ -1,4 +1,4 @@
-package brainstorm.buddy;
+package resourcesgui;
 
 public class NewsSources {
 

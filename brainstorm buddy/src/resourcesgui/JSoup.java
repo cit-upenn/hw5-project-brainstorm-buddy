@@ -1,4 +1,4 @@
-package brainstorm.buddy;
+package resourcesgui;
 
 import java.io.IOException;
 

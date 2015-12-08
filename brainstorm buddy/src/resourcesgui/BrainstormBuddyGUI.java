@@ -1,4 +1,4 @@
-package hw5;
+package resourcesgui;
 
 import java.awt.*;
 import java.awt.event.*;

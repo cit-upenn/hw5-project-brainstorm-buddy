@@ -11,8 +11,4 @@
 hs_err_pid*
 
 *.DS_Store
-<<<<<<< HEAD
-*.classpath
-=======
-*.classpath
->>>>>>> eb4ff6a88a5786785dc0164edb3c32e9ea821b40
+
