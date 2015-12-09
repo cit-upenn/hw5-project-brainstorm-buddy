@@ -2,13 +2,17 @@ package resourcesgui;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.plaf.synth.SynthSeparatorUI;
 
 /* TopLevelDemo.java requires no other files. */
 public class BrainstormBuddyGUI implements ActionListener, MouseListener{
@@ -36,9 +40,34 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
     private final int WINDOW_HEIGHT = 570;
     private final int WINDOW_WIDTH = 700;
     
+    //creating resource pane instance variables
+    private JFrame resourceFrame;
+    private JMenuBar resourceMenuBar; 
+    private JMenuItem saveResources;
+    private JMenu saveMenu;
+    private JTextArea resourceTextArea;
+    private JScrollPane resourceScroll; 
     
 
     public BrainstormBuddyGUI(){
+    	//everything for resource pane
+    	resourceFrame = new JFrame("Resources from Brainstorm");
+    	resourceFrame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+    	resourceFrame.setLayout(new BorderLayout());
+    	resourceMenuBar = new JMenuBar();
+    	resourceTextArea = new JTextArea("Stuff goes here");
+    	resourceTextArea.setLineWrap(true);
+    	resourceTextArea.setWrapStyleWord(true);
+    	saveMenu = new JMenu("Save");
+    	saveResources = new JMenuItem("Save Resource File");
+    	saveMenu.add(saveResources);
+    	resourceMenuBar.add(saveMenu);
+    	resourceFrame.setMinimumSize(new Dimension(400,600));
+    	resourceScroll = new JScrollPane(resourceTextArea);
+    	resourceFrame.add(resourceMenuBar, BorderLayout.NORTH);
+    	resourceFrame.add(resourceScroll);
+    	resourceFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+    	
     	//initialize elements
     	frame = new JFrame("Brainstorm Buddy");
     	menuBar = new JMenuBar();
@@ -50,6 +79,8 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
     	fileChooser = new JFileChooser();
     	textArea = new JTextArea();
     	textArea.setEditable(true);
+    	textArea.setLineWrap(true);
+    	textArea.setWrapStyleWord(true);
     	checkBoxPanel = new JPanel();
     	newsOptionsPanel = new JPanel();
     	encyc = new JCheckBox("Encyclopedia");
@@ -112,7 +143,9 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
     	
     	//add listeners
     	createResources.addMouseListener(this);
-    	createResources.addActionListener(sfl);
+    	createResources.addActionListener(ofl);
+    	saveResources.addActionListener(sfl);
+    	
     	newsSourceOptions.addActionListener(this);
     	encyc.addActionListener(this);
     	encycOptions.addActionListener(this);
@@ -249,35 +282,69 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
 	
 	class OpenFileListener implements ActionListener {
 
-		public void actionPerformed(ActionEvent e) {
+		public void actionPerformed(ActionEvent which) {
 			// TODO Auto-generated method stub
-			if (JFileChooser.APPROVE_OPTION == fileChooser.showOpenDialog(frame)) {
-				textArea.setText("");
-				File file = fileChooser.getSelectedFile();
-				Scanner in = null;
-				try
-				{
-					in = new Scanner(file);
-					// keep reading while there is more to read
-					while (in.hasNext())
-					{
-						// read an entire line
-						String line = in.nextLine();
-						textArea.append(line+"\n");
+			if(which.getSource().equals(open)){
+				if (JFileChooser.APPROVE_OPTION == fileChooser.showOpenDialog(frame)) {
+					textArea.setText("");
+					File file = fileChooser.getSelectedFile();
+					Scanner in = null;
+					try
+					{	
+						in = new Scanner(file);
+						// keep reading while there is more to read
+						while (in.hasNext())
+						{
+							// read an entire line
+							String line = in.nextLine();
+							textArea.append(line+"\n");
+						}
+					} catch(Exception ea) {
+						ea.printStackTrace();				
+					} finally {
+						in.close();
 					}
-				} catch(Exception ea) {
+				}
+			}
+			if(which.getSource().equals(createResources)){
+				resourceTextArea.setText("");
+				
+				File resultsFile;
+				Scanner resultsIn = null;
+				File tempFile = generateTempFileFromTextArea(textArea.getText());
+//				System.out.println(textArea.getText());
+				bsbc.gatherResources(tempFile.getName());
+				resourceFrame.setVisible(true);
+				try{
+					resultsFile = new File ("results.txt");
+					resultsIn = new Scanner(resultsFile);
+					while (resultsIn.hasNext())
+					{	
+						// read an entire line
+						String line = resultsIn.nextLine();
+						System.out.println(line);
+						resourceTextArea.append(line+"\n");
+					}
+				}catch(Exception ea) {
 					ea.printStackTrace();				
 				} finally {
-					in.close();
+					resultsIn.close();
 				}
 			}
 		}
 	}
 	
 	class SaveFileListener implements ActionListener {
-
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
+		
+		public void actionPerformed(ActionEvent which) {
+			JTextArea textAreaToSave = null;
+			if (which.getSource().equals(save)){
+				textAreaToSave = textArea;
+			}
+			if(which.getSource().equals(saveResources)){
+				textAreaToSave = resourceTextArea;
+			}
+			
 			if (JFileChooser.APPROVE_OPTION == fileChooser.showSaveDialog(frame)) {
 				// create a null PrintWriter outside the try block
 				PrintWriter out = null;
@@ -288,13 +355,11 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
 					if(!filePath.endsWith(".txt")) {
 					    file = new File(filePath + ".txt");
 					}
-					bsbc.gatherResources(file.getAbsolutePath());
-					System.out.println(file.getAbsolutePath());
 					// initialize the PrintWriter
 					out = new PrintWriter(file);
 
 					// this is the String I will write to the file
-					String output = textArea.getText();
+					String output = textAreaToSave.getText();
 
 					// now write to the file
 					out.println(output);
@@ -312,5 +377,46 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
 		}
 	}
 	
+	public File generateTempFileFromTextArea(String textAString){
+		File temp= null;
+		String currentDir;
+		try {
+		    // Create temp file.
+			currentDir = System.getProperty("user.dir");
+//		    System.out.println(currentDir);
+			temp = File.createTempFile("temp", ".txt", new File(currentDir));
+
+		    // Delete temp file when program exits.
+		    temp.deleteOnExit();
+
+		    // Write to temp file
+		    BufferedWriter out = new BufferedWriter(new FileWriter(temp));
+		    out.write(textAString);
+		    out.close();
+		} catch (IOException e) {
+		}
+	
+		return temp;
+	
+	}
+	
+	public void printFile (File f){
+		Scanner in = null;
+		try
+		{	
+			in = new Scanner(f);
+			// keep reading while there is more to read
+			while (in.hasNext())
+			{
+				// read an entire line
+				String line = in.nextLine();
+				System.out.println(line);
+			}
+		} catch(Exception ea) {
+			ea.printStackTrace();				
+		} finally {
+			in.close();
+		}
+	}
 	
 }
