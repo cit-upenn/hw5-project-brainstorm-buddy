@@ -31,9 +31,10 @@ public class Encyclopedia {
 	private HashMap<String, ArrayList<String>> keywordsAndLinks = new HashMap<String, ArrayList<String>>();
 	private boolean showPreview;
 	private ArrayList<String> previews = new ArrayList<String>();
-
+	String inputFile;
 	
 	public Encyclopedia(String file_name, boolean showPreviews) throws IOException, Exception {
+		inputFile = file_name;
 		showPreview = showPreviews;
 		getEntities();
 		getLinks(entityOutput);
@@ -57,7 +58,7 @@ public class Encyclopedia {
 	
 	public void getEntities() throws Exception, IOException{
 		AlchemyAPI alchemyObj = AlchemyAPI.GetInstanceFromFile("api_key.txt");
-		String txtDoc = getFileContents("test.txt");
+		String txtDoc = getFileContents(inputFile);
 		Document doc = alchemyObj.TextGetRankedNamedEntities(txtDoc);
 		entityOutput = getStringFromDocument(doc);
 		//System.out.println(entityOutput);
@@ -93,6 +94,7 @@ public class Encyclopedia {
 
 		for(int i=1; i<	eo.length; i++){
 			ArrayList<String> myLinks = linkPatternMatcher(eo[i]);
+			if(showPreview) {
 			if(!myLinks.get(0).equals("There are no links for this")) {
 			for(int k=0; k<myLinks.size();k++) {
 				if (myLinks.get(k).contains("dbpedia")) {
@@ -101,6 +103,7 @@ public class Encyclopedia {
 			}
 			} else {
 				previews.add("No Preview Available");
+			}
 			}
 			keywordsAndLinks.put(kw.get(i-1), myLinks);
 			

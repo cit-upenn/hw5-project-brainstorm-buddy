@@ -13,6 +13,8 @@ import javax.swing.border.TitledBorder;
 /* TopLevelDemo.java requires no other files. */
 public class BrainstormBuddyGUI implements ActionListener, MouseListener{
 	//Declare elements
+	private BrainStormBuddyChoices bsbc = new BrainStormBuddyChoices();
+	
 	private JFrame frame;
 	private JFileChooser fileChooser;
 	private JMenuBar menuBar;
@@ -110,6 +112,7 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
     	
     	//add listeners
     	createResources.addMouseListener(this);
+    	createResources.addActionListener(sfl);
     	newsSourceOptions.addActionListener(this);
     	encyc.addActionListener(this);
     	encycOptions.addActionListener(this);
@@ -165,10 +168,11 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
 		//encyclopedia option
 		 if (which.getSource().equals(encyc)){
 			 if(encyc.isSelected()){
-				//set some encyclopedia master boolean true
+				bsbc.setEncyclopedia(true);
 				 System.out.println("button is selected");				 
 			 } else {
-				//set some encyclopedia master boolean false
+				 bsbc.setEncyclopedia(false);
+				 //set some encyclopedia master boolean false
 				//encycOptions booleans are irrelevant? 
 				 System.out.println("button is not selected");
 				
@@ -179,11 +183,13 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
 			 switch(index){
 			 	case(1):{
 			 		//set some boolean true, others false
+			 		bsbc.setPreview(true);
 			 		System.out.println("Snippets");
 			 		break;
 			 	}
 			 	case(2):{
 			 		//set some boolean true, others false
+			 		bsbc.setPreview(false);
 			 		System.out.println("Just Links");
 			 		break;
 			 	}
@@ -192,16 +198,18 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
 		 if (which.getSource().equals(dict)){
 			 if (dict.isSelected()){
 				 //set some boolean true
+				 bsbc.setDictionary(true);
 				 System.out.println("dictionary button");
 			 }
 			 else{
 				 //set some boolean false
+				 bsbc.setDictionary(false);
 			 }
 			 
 		 }
 		 
 		 if (which.getSource().equals(links)){
-			 if (dict.isSelected()){
+			 if (links.isSelected()){
 				 //set some boolean true
 				 System.out.println("websites button");
 			 }
@@ -276,7 +284,12 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
 				try {
 					// create the File
 					File file = fileChooser.getSelectedFile();
-
+					String filePath = file.getAbsolutePath();
+					if(!filePath.endsWith(".txt")) {
+					    file = new File(filePath + ".txt");
+					}
+					bsbc.gatherResources(file.getAbsolutePath());
+					System.out.println(file.getAbsolutePath());
 					// initialize the PrintWriter
 					out = new PrintWriter(file);
 
@@ -285,6 +298,7 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
 
 					// now write to the file
 					out.println(output);
+					
 
 				} catch(Exception ea) {
 					ea.printStackTrace();				

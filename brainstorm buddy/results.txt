@@ -1,91 +1,60 @@
 
 
-Keyword: Donald J. Trump
-Links: 
-http://www.trumponline.com/
-http://dbpedia.org/resource/Donald_Trump
-http://rdf.freebase.com/ns/m.0cqt90
-http://sw.opencyc.org/concept/Mx4rv0ncIZwpEbGdrcN5Y29ycA
-http://yago-knowledge.org/resource/Donald_Trump
-Preview:
-Donald John Trump, Sr. (born June 14, 1946) is an American businessman, investor, television personality and author. He is the chairman and president of The Trump Organization and the founder of Trump Entertainment Resorts. Trump's extravagant lifestyle, outspoken manner, and role on the NBC reality show The Apprentice have made him a well-known celebrity who was No. 17 on the 2011 Forbes Celebrity 100 list.Trump is the son of Fred Trump, a wealthy New York City real-estate developer. He worked for his father's firm, Elizabeth Trump &amp; Son, while attending the Wharton School of the University of Pennsylvania, and in 1968 officially joined the company. He was given control of the company in 1971 and renamed it The Trump Organization. After his third bankruptcy in 2009, the property of Trump Entertainment Resorts was sold to various buyers.In 2010, Trump expressed an interest in becoming a candidate for President of the United States in the 2012 election, though in May 2011, he announced he would not be a candidate. Trump was a featured speaker at the 2013 Conservative Political Action Conference (CPAC). In 2013, Trump spent over $1 million to research a possible run for president of the United States in 2016.
-
-
-Keyword: United States
-Links: 
-http://www.usa.gov/
-http://dbpedia.org/resource/United_States
-http://www4.wiwiss.fu-berlin.de/factbook/resource/United_States
-http://rdf.freebase.com/ns/m.09c7w0
-http://sw.opencyc.org/concept/Mx4rvVikKpwpEbGdrcN5Y29ycA
-http://yago-knowledge.org/resource/United_States
-Preview:
-The United States of America (USA), commonly referred to as the United States (U.S.), America, and sometimes the States, is a federal republic consisting of 50 states, 16 territories, and a federal district. The 48 contiguous states and Washington, D.C., are in central North America between Canada and Mexico. The state of Alaska is located in the northwestern part of North America and the state of Hawaii is an archipelago in the mid-Pacific. The country also has five populated and nine unpopulated territories in the Pacific and the Caribbean. At 3.80 million square miles (9.85 million km2) and with around 318 million people, the United States is the world's fourth-largest country by total area and third-largest by population. It is one of the world's most ethnically diverse and multicultural nations, the product of large-scale immigration from many countries. The geography and climate of the United States are also extremely diverse, and the country is home to a wide variety of wildlife.Paleo-Indians migrated from Eurasia to what is now the U.S. mainland around 15,000 years ago, with European colonization beginning in the 16th century. The United States emerged from 13 British colonies located along the East Coast. Disputes between Great Britain and the colonies led to the American Revolution. On July 4, 1776, as the colonies were fighting Great Britain in the American Revolutionary War, delegates from the 13 colonies unanimously issued the Declaration of Independence. The war ended in 1783 with the recognition of independence of the United States from the Kingdom of Great Britain, and was the first successful war of independence against a European colonial empire. The United States is the only country that ever won its independence from Great Britain by war. The current Constitution was adopted on September 17, 1787. The first ten amendments, collectively named the Bill of Rights, were ratified in 1791 and designed to guarantee many fundamental civil rights and freedoms.Driven by the doctrine of manifest destiny, the United States embarked on a vigorous expansion across North America throughout the 19th century. This involved displacing native tribes, acquiring new territories, and gradually admitting new states, until by 1848 the nation spanned the continent. During the second half of the 19th century, the American Civil War ended legal slavery in the country. By the end of that century, the United States extended into the Pacific Ocean, and the economy, driven in large part by the Industrial Revolution, began to soar. The Spanish–American War and World War I confirmed the country's status as a global military power. The United States emerged from World War II as a global superpower, the first country to develop nuclear weapons, the only country to use them in warfare, and as a permanent member of the United Nations Security Council. The end of the Cold War and the dissolution of the Soviet Union left the United States as a power.The United States is a developed country and has the world's largest national economy, benefiting from an abundance of natural resources and high worker productivity. While the U.S. economy is considered post-industrial, the country continues to be one of the world's largest manufacturers. Accounting for 37% of global military spending, it is the world's foremost economic and military power, a prominent political and cultural force, and a leader in scientific research and technological innovations.
-
-
-Keyword: Barack Obama
-Links: 
-http://www.whitehouse.gov/
-http://dbpedia.org/resource/Barack_Obama
-http://rdf.freebase.com/ns/m.02mjmr
-http://yago-knowledge.org/resource/Barack_Obama
-Preview:
-Barack Hussein Obama II (/bəˈrɑːk huːˈseɪn ɵˈbɑːmə/; born August 4, 1961) is the 44th and current President of the United States, and the first African American to hold the office. Born in Honolulu, Hawaii, Obama is a graduate of Columbia University and Harvard Law School, where he served as president of the Harvard Law Review. He was a community organizer in Chicago before earning his law degree. He worked as a civil rights attorney and taught constitutional law at the University of Chicago Law School from 1992 to 2004. He served three terms representing the 13th District in the Illinois Senate from 1997 to 2004, running unsuccessfully for the United States House of Representatives in 2000.In 2004, Obama received national attention during his campaign to represent Illinois in the United States Senate with his victory in the March Democratic Party primary, his keynote address at the Democratic National Convention in July, and his election to the Senate in November. He began his presidential campaign in 2007 and, after a close primary campaign against Hillary Rodham Clinton in 2008, he won sufficient delegates in the Democratic Party primaries to receive the presidential nomination. He then defeated Republican nominee John McCain in the general election, and was inaugurated as president on January 20, 2009. Nine months after his election, Obama was named the 2009 Nobel Peace Prize laureate.During his first two years in office, Obama signed into law economic stimulus legislation in response to the Great Recession in the form of the American Recovery and Reinvestment Act of 2009 and the Tax Relief, Unemployment Insurance Reauthorization, and Job Creation Act of 2010. Other major domestic initiatives in his first term included the Patient Protection and Affordable Care Act, often referred to as "Obamacare"; the Dodd–Frank Wall Street Reform and Consumer Protection Act; and the Don't Ask, Don't Tell Repeal Act of 2010. In foreign policy, Obama ended U.S. military involvement in the Iraq War, increased U.S. troop levels in Afghanistan, signed the New START arms control treaty with Russia, ordered U.S. military involvement in Libya, and ordered the military operation that resulted in the death of Osama bin Laden. In January 2011, the Republicans regained control of the House of Representatives as the Democratic Party lost a total of 63 seats; and, after a lengthy debate over federal spending and whether or not to raise the nation's debt limit, Obama signed the Budget Control Act of 2011 and the American Taxpayer Relief Act of 2012.Obama was re-elected president in November 2012, defeating Republican nominee Mitt Romney, and was sworn in for a second term on January 20, 2013. During his second term, Obama has promoted domestic policies related to gun control in response to the Sandy Hook Elementary School shooting, and has called for full equality for LGBT Americans, while his administration has filed briefs which urged the Supreme Court to strike down the Defense of Marriage Act of 1996 and California's Proposition 8 as unconstitutional. In foreign policy, Obama ordered U.S. military involvement in Iraq in response to gains made by the Islamic State in Iraq after the 2011 withdrawal from Iraq, continued the process of ending U.S. combat operations in Afghanistan, and has sought to normalize U.S. relations with Cuba.
-
-
-Keyword: presidential race
+Keyword: Zion National Park
 Links: 
 There are no links for this
 Preview:
 No Preview Available
 
 
-Keyword: press release
+Keyword: General Tso
 Links: 
 There are no links for this
 Preview:
 No Preview Available
 
 
-Keyword: San Bernardino
-Links: 
-http://sbcity.org/
-http://dbpedia.org/resource/San_Bernardino,_California
-http://rdf.freebase.com/ns/m.0r4qq
-http://www.rdfabout.com/rdf/usgov/geo/us/ca/counties/san_bernardino_county/san_bernardino
-http://yago-knowledge.org/resource/San_Bernardino,_California
-http://sws.geonames.org/5391710/
-Preview:
-San Bernardino is a city located in the Riverside-San Bernardino metropolitan area (sometimes called the "Inland Empire"). It serves as the county seat of San Bernardino County, California, United States. As one of the Inland Empire's anchor cities, San Bernardino spans 81 square miles (210 km2) on the floor of the San Bernardino Valley, and has a population of 209,924 as of the 2010 census. San Bernardino is the 17th largest city in California, and the 99th largest city in the United States. San Bernardino is home to multiple diplomatic missions for the Inland Empire, being one of only four California cities with multiple consulates (the three other cities being Los Angeles, San Diego and San Francisco). The governments of Guatemala (opening July 2014) and Mexico have established their consulates in the downtown area of the city.California State University, San Bernardino is located in the northwestern part of the city. The university also hosts the Coussoulis Arena. Other attractions in San Bernardino include ASU Fox Theatre, the McDonald's Museum, which is located on the original site of the world's first McDonald's (at 34.1255°N 117.2946°W﻿ / 34.1255; -117.2946), California Theatre, the San Bernardino Mountains, and San Manuel Amphitheater, the largest outdoor amphitheater in the United States. In addition, the city is home to the Inland Empire 66ers baseball team, they play their home games at San Manuel Stadium in downtown San Bernardino.In July 2012, San Bernardino became the largest city to that date to choose to file for protection under Chapter 9 of the U.S. Bankruptcy code; this has been superseded by Detroit's filing in July 2013. San Bernardino's case was filed on August 1.San Bernardino is the poorest city of its population size in California, and the second poorest in the US next to Detroit, Michigan.
-
-
-Keyword: ISIS
-Links: 
-http://www.isistheband.com/
-http://dbpedia.org/resource/Isis_(band)
-http://rdf.freebase.com/ns/m.052k44
-http://yago-knowledge.org/resource/Isis_(band)
-http://zitgist.com/music/artist/5e521e8c-0ab2-44c4-8fd8-14d8d3321265
-Preview:
-Isis (stylized as ISIS) was a Los Angeles-based post-metal band, founded in Boston, Massachusetts, with a career spanning from 1997 to 2010. They borrowed from and helped to evolve a sound pioneered by the likes of Neurosis and Godflesh, creating heavy music consisting of lengthy songs that focus on repetition and evolution of structure.The band's last album, Wavering Radiant, was released on 5 May 2009. They disbanded in June 2010, just before the release of a split EP with the Melvins.
-
-
-Keyword: President
+Keyword: Civil War
 Links: 
 There are no links for this
 Preview:
 No Preview Available
 
 
-Keyword: California
+Keyword: Jellystone
 Links: 
-http://ca.gov
-http://dbpedia.org/resource/California
-http://rdf.freebase.com/ns/m.01n7q
-http://sw.opencyc.org/concept/Mx4rvVj2upwpEbGdrcN5Y29ycA
-http://yago-knowledge.org/resource/California
+There are no links for this
 Preview:
-California (/ˌkælɨˈfɔrnjə/) is a state located on the West Coast of the United States. It is the most populous U.S. state, home to one out of eight people who live in the U.S., with a total of 38 million people, and it is the third largest state by area (after Alaska and Texas). California is bordered by Oregon to the north, Nevada to the east, Arizona to the southeast, and the Mexican state of Baja California to the south. It is home to the nation's second and fifth most populous census statistical areas (Greater Los Angeles Area and San Francisco Bay Area, respectively), and eight of the nation's 50 most populated cities (Los Angeles, San Diego, San Jose, San Francisco, Fresno, Sacramento, Long Beach, and Oakland). Sacramento is the state capital, and has been since 1854.What is now California was first settled by various Native American tribes before being explored by a number of European expeditions throughout the 16th and 17th centuries. It was then claimed by the Spanish Empire as part of Alta California in the larger territory of New Spain. Alta California became a part of Mexico in 1821 following its successful war for independence, but would later be ceded to the United States in 1848 after the Mexican-American War. The western portion of Alta California was soon organized as the State of California, which was admitted as the 31st state on September 9, 1850. The California Gold Rush starting in 1848 led to dramatic social and demographic change, with large-scale immigration from the east and abroad with an accompanying economic boom.California's diverse geography ranges from the Pacific Coast in the west, to the Sierra Nevada in the east – from the Redwood–Douglas fir forests of the northwest, to the Mojave Desert areas in the southeast. The center of the state is dominated by the Central Valley, a major agricultural area. California contains both the highest and lowest points in the contiguous United States (Mount Whitney and Death Valley), and has the 3rd longest coastline of all states (after Alaska and Florida). Earthquakes are a common occurrence because of the state's location along the Pacific Ring of Fire: about 37,000 are recorded annually, but most are too small to feel.At least half of the fruit produced in the United States is now cultivated in California, and the state also leads in the production of vegetables. Other important contributors to the state's economy include aerospace, education, manufacturing, and high-tech industry. If it were a country, California would be the 8th or 9th largest economy in the world and the 34th most populous.
+No Preview Available
+
+
+Keyword: Yosemite
+Links: 
+There are no links for this
+Preview:
+No Preview Available
+
+
+Keyword: Utah
+Links: 
+http://www.utah.gov
+http://dbpedia.org/resource/Utah
+http://rdf.freebase.com/ns/m.07srw
+http://sw.opencyc.org/concept/Mx4rvViOO5wpEbGdrcN5Y29ycA
+http://yago-knowledge.org/resource/Utah
+Preview:
+Utah (/ˈjuːtɔː/ or /ˈjuːtɑː/; Arapaho: Wo'tééneihí ) is a state in the western United States. It became the 45th state admitted to the Union on January 4, 1896. Utah is the 13th-largest, the 33rd-most populous, and the 10th-least-densely populated of the 50 United States. Utah has a population of about 2.9 million, approximately 80% of whom live along the Wasatch Front, centering on Salt Lake City. Utah is bordered by Colorado to the east, Wyoming to the northeast, Idaho to the north, Arizona to the south, and Nevada to the west. It also touches a corner of New Mexico in the southeast.Approximately 62% of Utahns are reported to be members of The Church of Jesus Christ of Latter-day Saints or LDS (Mormons), which greatly influences Utah culture and daily life. The world headquarters of The Church of Jesus Christ of Latter-day Saints (LDS Church) is located in Utah's state capital, Salt Lake City. Utah is the most religiously homogeneous state in the United States, the only state with a Mormon majority, and the only state with a majority population belonging to a single church.The state is a center of transportation, education, information technology and research, government services, mining, and a major tourist destination for outdoor recreation. In 2013, the U.S. Census Bureau estimated that Utah had the second fastest-growing population of any state. St. George was the fastest–growing metropolitan area in the United States from 2000 to 2005. A 2012 Gallup national survey found Utah overall to be the "best state to live in" based on 13 forward-looking measurements including various economic, lifestyle, and health-related outlook metrics.
+
+
+Keyword: Kentucky
+Links: 
+http://Kentucky.gov
+http://dbpedia.org/resource/Kentucky
+http://rdf.freebase.com/ns/m.0tcps
+http://sw.opencyc.org/concept/Mx4rvVi0u5wpEbGdrcN5Y29ycA
+http://yago-knowledge.org/resource/Kentucky
+Preview:
+Kentucky /kɨnˈtʌki/, officially the Commonwealth of Kentucky, is a state located in the east south-central region of the United States. Kentucky is one of four U.S. states constituted as a commonwealth (the others being Virginia, Pennsylvania, and Massachusetts). Originally a part of Virginia, in 1792 Kentucky became the 15th state to join the Union. Kentucky is the 37th most extensive and the 26th most populous of the 50 United States.Kentucky is known as the "Bluegrass State", a nickname based on the bluegrass found in many of its pastures due to the fertile soil. One of the major regions in Kentucky is the Bluegrass Region in central Kentucky which houses two of its major cities, Louisville and Lexington. It is a land with diverse environments and abundant resources, including the world's longest cave system, Mammoth Cave National Park, the greatest length of navigable waterways and streams in the contiguous United States, and the two largest man-made lakes east of the Mississippi River.Kentucky is also home to the highest per capita number of deer and turkey in the United States, the largest free-ranging elk herd east of the Mississippi River, and the nation's most productive coalfield. Kentucky is also known for horse racing, bourbon distilleries, automobile manufacturing, tobacco, bluegrass music, college basketball, and Kentucky Fried Chicken.
 
 
 Keyword: America

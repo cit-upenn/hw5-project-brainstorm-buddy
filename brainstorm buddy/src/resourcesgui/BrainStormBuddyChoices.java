@@ -12,7 +12,12 @@ public class BrainStormBuddyChoices {
 	private boolean preview;
 	private boolean links;
 	
-	BrainStormBuddyChoices(String fileName) {
+	BrainStormBuddyChoices() {
+//		gatherResources(fileName);
+		
+	}
+
+	public void gatherResources(String fileName) {
 		if(dictionary) {
 			try {
 				Dictionary d = new Dictionary(fileName);
@@ -33,7 +38,6 @@ public class BrainStormBuddyChoices {
 				e.printStackTrace();
 			}
 		}
-		
 	}
 	
 	public void setDictionary(boolean choice) {
