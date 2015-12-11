@@ -30,6 +30,9 @@ import javax.xml.xpath.XPathExpressionException;
 
 import org.jsoup.Jsoup;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import org.xml.*;
 
@@ -51,10 +54,10 @@ public class Dictionary {
 		fileName = file;
 		getKeywords();
 		getDefinitions();
-		PrintWriter writer = new PrintWriter("results.txt");
+		PrintWriter writer = new PrintWriter(fileName);
 		for(int i= 0; i< kw.size(); i++) {
 			writer.println("Keyword: " + kw.get(i));
-			writer.println("Definition" + de.get(i));
+			writer.println("Definition: " + de.get(i));
 			writer.print("\n");
 		}
 		writer.close();
@@ -96,12 +99,59 @@ public class Dictionary {
                 DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
                 DocumentBuilder db = dbf.newDocumentBuilder();
                 Document doc = db.parse(myConnection.getInputStream());
+                doc.getDocumentElement().normalize();
                 String def;
                 try {
-                def = doc.getElementsByTagName("dt").item(0).getChildNodes().item(0).getNodeValue();
+                NodeList defs = doc.getElementsByTagName("dt");
+                Node dt = defs.item(0);
+									
+				Element titleElem = (Element) defs.item(0);
+				String meaning = " ";
+				for (int k = 0; k < titleElem.getChildNodes().getLength(); k++){
+					Node titleNode = titleElem.getChildNodes().item(k);
+					meaning = meaning + titleNode.getTextContent();
+				}
+				def = meaning.split(":")[1];
                 } catch (Exception e) {
-                	def = ":There is no definition for this keyword";
+                	def = "There is no definition for this keyword";
                 }
+                
+    			/*
+    			NodeList items = doc.getElementsByTagName("entry");
+    			for (int i = 0; i &lt; items.getLength(); i++)
+    			{
+    				Node n = items.item(i);
+     
+    				if (n.getNodeType() != Node.ELEMENT_NODE)
+    					continue;
+     
+     
+    				Element e = (Element) n;
+     
+    				//Check if the entry word is equal to the given word
+    				NodeList chkList = e.getElementsByTagName("ew");
+    				Element chkElem = (Element) chkList.item(0);
+    				Node chkNode = chkElem.getChildNodes().item(0);
+    				System.out.println(chkNode.getNodeValue());
+    				//System.out.println(word);
+     
+    				NodeList titleList = e.getElementsByTagName("dt");
+    				for (int j = 0; j &lt; titleList.getLength(); j++){
+    					Node dt = titleList.item(j);
+    					if (dt.getNodeType() != Node.ELEMENT_NODE)
+    						continue;					
+    					Element titleElem = (Element) titleList.item(j);
+    					meaning = " ";
+    					for (int k = 0; k &lt; titleElem.getChildNodes().getLength(); k++){
+    						Node titleNode = titleElem.getChildNodes().item(k);
+    						meaning = meaning.trim() + titleNode.getTextContent();
+    					}
+    					System.out.println(meaning);
+    				}
+    			}
+    			*/
+     
+                
                
         
         //while ((results = in.readLine()) != null) {
