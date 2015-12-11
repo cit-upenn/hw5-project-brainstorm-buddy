@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -17,6 +18,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.xml.crypto.dsig.XMLObject;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
@@ -33,7 +36,7 @@ import org.xml.*;
 import com.alchemyapi.api.AlchemyAPI;
 
 public class Dictionary {
-	private String file_name;
+	private String fileName;
 	HashMap<String, Double> keywordsAndRelevance = new HashMap<String, Double>();
 	ArrayList<String> kw = new ArrayList<String>();
 	ArrayList<Double> re = new ArrayList<Double>();
@@ -44,16 +47,25 @@ public class Dictionary {
 	private String stringLines;
 
 	
-	public Dictionary(String file_name) throws Exception {
+	public Dictionary(String file) throws Exception {
+		fileName = file;
 		getKeywords();
 		getDefinitions();
+		PrintWriter writer = new PrintWriter("results.txt");
+		for(int i= 0; i< kw.size(); i++) {
+			writer.println("Keyword: " + kw.get(i));
+			writer.println("Definition" + de.get(i));
+			writer.print("\n");
+		}
+		writer.close();
 	}
+	
 	
 	public void getKeywords() throws IOException, SAXException,
     ParserConfigurationException, XPathExpressionException {
 		
 	AlchemyAPI alchemyObj = AlchemyAPI.GetInstanceFromFile("api_key.txt");
-	String txtDoc = getFileContents("test.txt");
+	String txtDoc = getFileContents(fileName);
 	Document doc = alchemyObj.TextGetRankedKeywords(txtDoc);
 	String keywordOutput = getStringFromDocument(doc);
 	keywordPatternMatcher(keywordOutput);
@@ -66,28 +78,37 @@ public class Dictionary {
 	
 	public void getDefinitions() throws Exception{
        for(int i =0; i<kw.size(); i++) {
-    	   getKeywordDefinition(kw.get(i));
+    	   de.add(getKeywordDefinition(kw.get(i)));
+    	   
        }
 	}
 	
 	private String getKeywordDefinition(String word) throws Exception {
 		String fixed = word.replace(' ', '_');
-		fixed = "sad";
+		//fixed = "mus";
 		URL myUrl = new URL("http://www.dictionaryapi.com/api/v1/references/collegiate/xml/"+ fixed + "?key=720ae1e5-6d26-4216-b0a7-7e4a9dd1a53b");
         URLConnection myConnection = myUrl.openConnection();
         
         //XMLObject = xml;
-        String results;
-        BufferedReader in = new BufferedReader(
-            	new InputStreamReader(
-                myConnection.getInputStream()));
+        //String results;
+        //BufferedReader in = new BufferedReader(
+            	//new InputStreamReader(
+                DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+                DocumentBuilder db = dbf.newDocumentBuilder();
+                Document doc = db.parse(myConnection.getInputStream());
+                String def;
+                try {
+                def = doc.getElementsByTagName("dt").item(0).getChildNodes().item(0).getNodeValue();
+                } catch (Exception e) {
+                	def = ":There is no definition for this keyword";
+                }
+               
         
-        while ((results = in.readLine()) != null) {
+        //while ((results = in.readLine()) != null) {
         	
-        	de.add(results);
-        }
-        String def = dictionaryPatternMatcher(word, de.get(2));
-        
+        	//de.add(results);
+        //}
+        //String def = dictionaryPatternMatcher(word, de.get(2));
         return def;
         
 	}
