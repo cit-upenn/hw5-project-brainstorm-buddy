@@ -27,6 +27,7 @@ public class FileComposer {
 			String[] words = encyclopediaHashMap.keySet().toArray(new String[encyclopediaHashMap.keySet().size()]);
 			for(String i: words) {
 				printedKeyWords.put(i, true);
+				writer.println();
 				writer.println("Keyword: "+ i);
 				writer.println("Encyclopedia Links: ");
 				ArrayList<String> links = encyclopediaHashMap.get(i);
@@ -54,10 +55,11 @@ public class FileComposer {
 
 	private void printNewsSourcesWords() {
 		if(!newsSourcesHashMap.isEmpty()) {
-			String[] words = newsSourcesHashMap.keySet().toArray(new String[encyclopediaHashMap.keySet().size()]);
+			String[] words = newsSourcesHashMap.keySet().toArray(new String[newsSourcesHashMap.keySet().size()]);
 			for(String i: words) {
 				if(!printedKeyWords.containsKey(i)) {
 					printedKeyWords.put(i, true);
+					writer.println();
 					writer.println("Keyword: "+ i);
 					if(encyclopediaHashMap.containsKey(i)) {
 						writer.println("Encyclopedia Links: ");
@@ -87,10 +89,11 @@ public class FileComposer {
 
 	private void printDictionaryWords() {
 		if(!dictionaryHashMap.isEmpty()) {
-			String[] words = dictionaryHashMap.keySet().toArray(new String[encyclopediaHashMap.keySet().size()]);
+			String[] words = dictionaryHashMap.keySet().toArray(new String[dictionaryHashMap.keySet().size()]);
 			for(String i: words) {
 				if(!printedKeyWords.containsKey(i)) {
 					printedKeyWords.put(i, true);
+					writer.println();
 					writer.println("Keyword: "+ i);
 					if(encyclopediaHashMap.containsKey(i)) {
 						writer.println("Encyclopedia Links: ");

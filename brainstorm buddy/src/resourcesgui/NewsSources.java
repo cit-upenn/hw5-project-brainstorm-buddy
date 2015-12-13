@@ -56,7 +56,7 @@ public class NewsSources {
 		String txtDoc = getFileContents(inputFile);
 		Document doc = alchemyObj.TextGetRankedNamedEntities(txtDoc);
 		entityOutput = getStringFromDocument(doc);
-		System.out.println(entityOutput);
+		//System.out.println(entityOutput);
 		keywordPatternMatcher(entityOutput);
 	}
 	
