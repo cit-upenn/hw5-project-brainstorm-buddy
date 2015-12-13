@@ -27,7 +27,7 @@ import com.alchemyapi.api.AlchemyAPI;
 public class Encyclopedia {
 	private ArrayList<Double> re = new ArrayList<Double>();
 	private ArrayList<String> kw = new ArrayList<String>();
-	private String entityOutput;
+	private String conceptOutput;
 	private HashMap<String, ArrayList<String>> keywordsAndLinks = new HashMap<String, ArrayList<String>>();
 	private boolean showPreview;
 	private ArrayList<String> previews = new ArrayList<String>();
@@ -36,33 +36,22 @@ public class Encyclopedia {
 	public Encyclopedia(String file_name, boolean showPreviews) throws IOException, Exception {
 		inputFile = file_name;
 		showPreview = showPreviews;
-		getEntities();
-		getLinks(entityOutput);
-		PrintWriter writer = new PrintWriter("results.txt");
-		for(int i = 0; i<kw.size(); i++) {
-			writer.println("\n");
-			writer.println("Keyword: " + kw.get(i));
-			writer.println("Links: ");
-			ArrayList<String> link = keywordsAndLinks.get(kw.get(i));
-			for(String j: link) {
-				writer.println(j);
-			}
-			if(showPreview) {
-			writer.println("Preview:");
-			writer.println(previews.get(i));
-			}
-		}
-		writer.close();
+		getConcepts();
+		getLinks(conceptOutput);
 		
 	}
 	
-	public void getEntities() throws Exception, IOException{
+	public HashMap<String, ArrayList<String>> getEncyclopediaHashMap() {
+		return keywordsAndLinks;
+	}
+	
+	public void getConcepts() throws Exception, IOException{
 		AlchemyAPI alchemyObj = AlchemyAPI.GetInstanceFromFile("api_key.txt");
 		String txtDoc = getFileContents(inputFile);
 		Document doc = alchemyObj.TextGetRankedConcepts(txtDoc);
-		entityOutput = getStringFromDocument(doc);
-		System.out.println(entityOutput);
-		keywordPatternMatcher(entityOutput);
+		conceptOutput = getStringFromDocument(doc);
+		System.out.println(conceptOutput);
+		keywordPatternMatcher(conceptOutput);
 	}
 	
 	public String getPreview(String url) throws IOException {
@@ -82,9 +71,9 @@ public class Encyclopedia {
 		Matcher match = pattern.matcher(output);
 
 		if(match.find()) {
-			return match.group(1);
+			return "Preview: " + match.group(1);
 		} else {
-			return "No Preview Available";
+			return "Preview: No Preview Available";
 		}
 	}
 	
@@ -98,11 +87,11 @@ public class Encyclopedia {
 			if(!myLinks.get(0).equals("There are no links for this")) {
 			for(int k=0; k<myLinks.size();k++) {
 				if (myLinks.get(k).contains("dbpedia")) {
-					previews.add(getPreview(myLinks.get(k)));
+					myLinks.add(getPreview(myLinks.get(k)));
 				} 
 			}
 			} else {
-				previews.add("No Preview Available");
+				myLinks.add("No Preview Available");
 			}
 			}
 			keywordsAndLinks.put(kw.get(i-1), myLinks);

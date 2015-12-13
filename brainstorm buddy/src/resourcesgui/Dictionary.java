@@ -44,7 +44,7 @@ public class Dictionary {
 	ArrayList<String> kw = new ArrayList<String>();
 	ArrayList<Double> re = new ArrayList<Double>();
 	ArrayList<String> de = new ArrayList<String>();
-	HashMap<String, String> def = new HashMap<String, String>();
+	HashMap<String, String> hashMapdefinitions = new HashMap<String, String>();
 	private MyFileReader f;
 	private ArrayList<String> dictionary;
 	private String stringLines;
@@ -54,13 +54,13 @@ public class Dictionary {
 		fileName = file;
 		getKeywords();
 		getDefinitions();
-		PrintWriter writer = new PrintWriter("results.txt");
-		for(int i= 0; i< kw.size(); i++) {
-			writer.println("Keyword: " + kw.get(i));
-			writer.println("Definition: " + de.get(i));
-			writer.print("\n");
+		for (int i=0;i<kw.size(); i++) {
+		hashMapdefinitions.put(kw.get(i), de.get(i));
 		}
-		writer.close();
+	}
+	
+	public HashMap<String, String> getDictionaryHashMap() {
+		return hashMapdefinitions;
 	}
 	
 	

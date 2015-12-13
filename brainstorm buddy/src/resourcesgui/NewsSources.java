@@ -44,17 +44,11 @@ public class NewsSources {
 		this.newYorkTimes = newYorkTimes;
 		this.jstor = jstor;
 		getAllNewsStories();
-		PrintWriter writer = new PrintWriter("results.txt");
-		for(int i = 0; i<kw.size(); i++) {
-			writer.println("\n");
-			writer.println("Keyword: " + kw.get(i));
-			writer.println("Links to Articles: ");
-			ArrayList<String> link = kwlink.get(kw.get(i));
-			for(String j: link) {
-				writer.println(j);
-			}
-		}
-		writer.close();
+		
+	}
+	
+	public HashMap<String, ArrayList<String>> getNewsSourcesHashMap() {
+		return kwlink;
 	}
 	
 	public void getEntities() throws Exception, IOException{
