@@ -11,9 +11,16 @@ public class JSoup {
 	public JSoup(String url) {
 		myUrl=url;
 	}
-	public String getContents() throws IOException {
-		Document doc = Jsoup.connect(myUrl).get();
-		String contents = doc.toString();
-		return contents;
+	public String getContents() {
+		Document doc;
+		try {
+			doc = Jsoup.connect(myUrl).get();
+			String contents = doc.toString();
+			return contents;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("fail");
+			return "Error in search";
+		}
 	}
 }

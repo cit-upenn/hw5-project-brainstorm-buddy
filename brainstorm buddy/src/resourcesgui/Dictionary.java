@@ -54,7 +54,7 @@ public class Dictionary {
 		fileName = file;
 		getKeywords();
 		getDefinitions();
-		PrintWriter writer = new PrintWriter(fileName);
+		PrintWriter writer = new PrintWriter("results.txt");
 		for(int i= 0; i< kw.size(); i++) {
 			writer.println("Keyword: " + kw.get(i));
 			writer.println("Definition: " + de.get(i));
