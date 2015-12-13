@@ -39,7 +39,7 @@ public class NewsSources {
 	boolean jstor;
 
 	public NewsSources(String file_name, boolean newYorkTimes, boolean jstor) throws IOException, Exception {
-		file_name = inputFile;
+		inputFile = file_name;
 		getEntities();
 		this.newYorkTimes = newYorkTimes;
 		this.jstor = jstor;
@@ -137,10 +137,6 @@ public class NewsSources {
 			return allWordLinks;
 	}
 	
-	
-	private void getJstorNewsStories() {
-		
-	}
 	
 	private void keywordPatternMatcher(String searchString) {
 		Pattern pattern = Pattern.compile("<text>(.*)</text>");
