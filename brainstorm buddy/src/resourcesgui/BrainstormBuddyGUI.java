@@ -146,6 +146,7 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
     	createResources.addActionListener(ofl);
     	saveResources.addActionListener(sfl);
     	
+    	news.addActionListener(this);
     	newsSourceOptions.addActionListener(this);
     	encyc.addActionListener(this);
     	encycOptions.addActionListener(this);
@@ -255,6 +256,7 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
 		 if (which.getSource().equals(news)){
 			 if(news.isSelected()){
 				bsbc.setNewsSources(true);
+				System.out.println("news selected");
 			 } else {
 				 bsbc.setNewsSources(false);
 				 //set some encyclopedia master boolean false
