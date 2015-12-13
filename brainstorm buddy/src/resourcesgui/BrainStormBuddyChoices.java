@@ -21,7 +21,7 @@ public class BrainStormBuddyChoices {
 	}
 
 	public void gatherResources(String fileName) {
-		HashMap<String,String> dict = null;
+		HashMap<String,String> dict = new HashMap<String,String>();
 		if(dictionary) {
 			try {
 				Dictionary d = new Dictionary(fileName);
@@ -32,7 +32,7 @@ public class BrainStormBuddyChoices {
 			}
 		}
 		
-		HashMap<String, ArrayList<String>> ency = null;
+		HashMap<String, ArrayList<String>> ency = new HashMap<String, ArrayList<String>>();
 		
 		if(encyclopedia) {
 			try {
@@ -47,7 +47,7 @@ public class BrainStormBuddyChoices {
 			}
 		}
 		
-		HashMap<String, ArrayList<String>> news = null;
+		HashMap<String, ArrayList<String>> news = new HashMap<String, ArrayList<String>>();
 		
 		if(newsSources) {
 			try {
