@@ -29,7 +29,7 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
 	
 	private JTextArea textArea;
 	private JPanel checkBoxPanel, encycSettingPanel, newsOptionsPanel;;//Encyclopedia, Dictionary, Websites 
-	private JCheckBox encyc, news, dict, links;
+	private JCheckBox encyc, news, dict;
 	private JComboBox<String> newsSourceOptions;
 	private JComboBox<String> encycOptions;
 	
@@ -86,7 +86,6 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
     	encyc = new JCheckBox("Encyclopedia");
     	news = new JCheckBox("News");
     	dict = new JCheckBox("Dictionary");
-    	links = new JCheckBox("Websites");
     	encycSettingPanel = new JPanel();
     	newsSourceOptions = new JComboBox<>(newsSources);
     	encycOptions = new JComboBox<>(encycSettings);
@@ -119,7 +118,6 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
     	
     	checkBoxPanel.add(encycSettingPanel);
     	checkBoxPanel.add(dict);
-    	checkBoxPanel.add(links);
     	
     	newsOptionsPanel.add(news);
     	newsOptionsPanel.add(newsSourceOptions);
@@ -151,7 +149,6 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
     	encyc.addActionListener(this);
     	encycOptions.addActionListener(this);
     	dict.addActionListener(this);
-    	links.addActionListener(this);
     	
     	
     	open.addActionListener(ofl);
@@ -242,16 +239,7 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
 			 
 		 }
 		 
-		 if (which.getSource().equals(links)){
-			 if (links.isSelected()){
-				 //set some boolean true
-				 System.out.println("websites button");
-			 }
-			 else{
-				 //set some boolean false
-			 }
-			 
-		 }
+		
 		 
 		 if (which.getSource().equals(news)){
 			 if(news.isSelected()){
