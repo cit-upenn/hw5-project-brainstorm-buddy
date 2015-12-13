@@ -146,6 +146,7 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
     	createResources.addActionListener(ofl);
     	saveResources.addActionListener(sfl);
     	
+    	news.addActionListener(this);
     	newsSourceOptions.addActionListener(this);
     	encyc.addActionListener(this);
     	encycOptions.addActionListener(this);
