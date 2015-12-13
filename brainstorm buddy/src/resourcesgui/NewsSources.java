@@ -39,6 +39,7 @@ public class NewsSources {
 	boolean jstor;
 
 	public NewsSources(String file_name, boolean newYorkTimes, boolean jstor) throws IOException, Exception {
+		file_name = inputFile;
 		getEntities();
 		this.newYorkTimes = newYorkTimes;
 		this.jstor = jstor;
@@ -58,7 +59,7 @@ public class NewsSources {
 	
 	public void getEntities() throws Exception, IOException{
 		AlchemyAPI alchemyObj = AlchemyAPI.GetInstanceFromFile("api_key.txt");
-		String txtDoc = getFileContents("test.txt");
+		String txtDoc = getFileContents(inputFile);
 		Document doc = alchemyObj.TextGetRankedNamedEntities(txtDoc);
 		entityOutput = getStringFromDocument(doc);
 		//System.out.println(entityOutput);

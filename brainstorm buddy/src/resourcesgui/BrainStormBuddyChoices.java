@@ -6,8 +6,8 @@ public class BrainStormBuddyChoices {
 	
 	private boolean dictionary	;
 	private boolean newsSources;
-	private boolean cnn;
-	private boolean googleScholar;
+	private boolean newYorkTimes;
+	private boolean jstor;
 	private boolean encyclopedia;
 	private boolean preview;
 	private boolean links;
@@ -38,6 +38,16 @@ public class BrainStormBuddyChoices {
 				e.printStackTrace();
 			}
 		}
+		
+		else if(newsSources) {
+			try {
+				NewsSources ns = new NewsSources(fileName, newYorkTimes, jstor);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
 	}
 	
 	public void setDictionary(boolean choice) {
@@ -48,12 +58,12 @@ public class BrainStormBuddyChoices {
 		newsSources = choice;
 	}
 	
-	public void setCnn(boolean choice) {
-		cnn = choice;
+	public void setNewYorktimes(boolean choice) {
+		newYorkTimes = choice;
 	}
 	
-	public void setGoogleScholar(boolean choice) {
-		googleScholar = choice;
+	public void setJstor(boolean choice) {
+		jstor = choice;
 	}
 	
 	public void setEncyclopedia(boolean choice) {

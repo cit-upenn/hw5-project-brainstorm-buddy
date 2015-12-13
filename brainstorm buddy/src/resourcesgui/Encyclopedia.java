@@ -59,9 +59,9 @@ public class Encyclopedia {
 	public void getEntities() throws Exception, IOException{
 		AlchemyAPI alchemyObj = AlchemyAPI.GetInstanceFromFile("api_key.txt");
 		String txtDoc = getFileContents(inputFile);
-		Document doc = alchemyObj.TextGetRankedNamedEntities(txtDoc);
+		Document doc = alchemyObj.TextGetRankedConcepts(txtDoc);
 		entityOutput = getStringFromDocument(doc);
-		//System.out.println(entityOutput);
+		System.out.println(entityOutput);
 		keywordPatternMatcher(entityOutput);
 	}
 	
@@ -90,7 +90,7 @@ public class Encyclopedia {
 	
 	
 	public void getLinks(String searchString) throws IOException {
-		String[] eo = searchString.split("<entity>");
+		String[] eo = searchString.split("<concept>");
 
 		for(int i=1; i<	eo.length; i++){
 			ArrayList<String> myLinks = linkPatternMatcher(eo[i]);
