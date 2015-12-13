@@ -9,7 +9,7 @@ public class BrainStormBuddyChoices {
 	
 	private boolean dictionary	;
 	private boolean newsSources;
-	private boolean newYorkTimes;
+	private boolean newYorkTimes = true;
 	private boolean jstor;
 	private boolean encyclopedia;
 	private boolean preview;

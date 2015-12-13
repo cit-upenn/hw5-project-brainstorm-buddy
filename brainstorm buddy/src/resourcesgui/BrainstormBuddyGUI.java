@@ -33,7 +33,7 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
 	private JComboBox<String> newsSourceOptions;
 	private JComboBox<String> encycOptions;
 	
-	private String [] newsSources = {"BBC", "Google Scholar", "CNN"};
+	private String [] newsSources = {"New York Times", "JStor"};
 	private String [] encycSettings = {"","Snippets and Links", "Just Links"};
 	private JButton createResources;
 	private GridLayout tester = new GridLayout(3,2);
@@ -202,12 +202,12 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
 		 if (which.getSource().equals(encyc)){
 			 if(encyc.isSelected()){
 				bsbc.setEncyclopedia(true);
-				 System.out.println("button is selected");				 
+//				 System.out.println("button is selected");				 
 			 } else {
 				 bsbc.setEncyclopedia(false);
 				 //set some encyclopedia master boolean false
 				//encycOptions booleans are irrelevant? 
-				 System.out.println("button is not selected");
+//				 System.out.println("button is not selected");
 				
 			 } 
 		 }
@@ -252,31 +252,59 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
 			 
 		 }
 		 
-		 
+		 if (which.getSource().equals(news)){
+			 if(news.isSelected()){
+				bsbc.setNewsSources(true);
+			 } else {
+				 bsbc.setNewsSources(false);
+				 //set some encyclopedia master boolean false
+				//encycOptions booleans are irrelevant? 
+				
+			 } 
+		 }
 		 if (which.getSource().equals(newsSourceOptions)){
-				if(news.isSelected()){
-					//can get rid of, put it all in if which == news and news.isSelected()
-					int index = newsSourceOptions.getSelectedIndex();
-					switch(index){
-				 		case(0):{
-				 			//set some boolean true, others false
-				 			System.out.println("BBC selected");
-				 			break;
-				 		}
-				 		case(1):{
-				 			//set some boolean true, others false
-				 			System.out.println("Google Scholar selected");
-				 			break;
-				 		}
-				 		case(2):{
-				 			//set some boolean true, others false
-				 			System.out.println("CNN selected");
-				 			break;
-				 		}
-				 	
-					}
-				}
+			 int index = newsSourceOptions.getSelectedIndex();
+			 switch(index){
+			 	case(0):{
+			 		//set some boolean true, others false
+			 		bsbc.setNewYorktimes(true);
+			 		bsbc.setJstor(false);
+			 		System.out.println("New York Times");
+			 		break;
+			 	}
+			 	case(1):{
+			 		//set some boolean true, others false
+			 		bsbc.setJstor(true);
+			 		bsbc.setNewYorktimes(false);
+			 		System.out.println("JStor");
+			 		break;
+			 	}
 			 }
+		 }
+//		 if (which.getSource().equals(newsSourceOptions)){
+//				if(news.isSelected()){
+//					//can get rid of, put it all in if which == news and news.isSelected()
+//					int index = newsSourceOptions.getSelectedIndex();
+//					switch(index){
+//				 		case(0):{
+//				 			//set some boolean true, others false
+//				 			System.out.println("BBC selected");
+//				 			break;
+//				 		}
+//				 		case(1):{
+//				 			//set some boolean true, others false
+//				 			System.out.println("Google Scholar selected");
+//				 			break;
+//				 		}
+//				 		case(2):{
+//				 			//set some boolean true, others false
+//				 			System.out.println("CNN selected");
+//				 			break;
+//				 		}
+//				 	
+//					}
+//				}
+//			 }
 		
 	}
 	
