@@ -344,7 +344,7 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
 					{	
 						// read an entire line
 						String line = resultsIn.nextLine();
-						System.out.println(line);
+//						System.out.println(line);
 						resourceTextArea.append(line+"\n");
 					}
 				}catch(Exception ea) {
