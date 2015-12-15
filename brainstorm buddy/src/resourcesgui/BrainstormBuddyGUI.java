@@ -411,7 +411,7 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
 	 * @param textAString the string to be written to the temporary file
 	 * @return  a temporary file in the current directory
 	 */
-	public File generateTempFileFromTextArea(String textAString){
+	private File generateTempFileFromTextArea(String textAString){
 		File temp= null;
 		String currentDir;
 		try {
@@ -438,7 +438,7 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
 	 * Used to test file contents
 	 * @param f the file to be printed
 	 */
-	public void printFile (File f){
+	private void printFile (File f){
 		Scanner in = null;
 		try
 		{	
