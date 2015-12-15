@@ -11,6 +11,11 @@ import org.xml.sax.SAXException;
 
 import com.sun.org.apache.xerces.internal.parsers.DOMParser;
 
+/**
+ * This is a tester class for the Dictionary class
+ * @author meredithmargulies
+ *
+ */
 public class DictionaryTester {
 
 		private Dictionary d;

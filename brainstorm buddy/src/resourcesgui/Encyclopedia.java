@@ -5,11 +5,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -19,20 +17,30 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-import org.jsoup.Jsoup;
 import org.w3c.dom.Document;
 
 import com.alchemyapi.api.AlchemyAPI;
 
+/**
+ * This is an Encyclopedia class
+ * It pulls concepts from a file and then pulls encyclopedia links and encyclopedia previews
+ * @author meredithmargulies
+ *
+ */
 public class Encyclopedia {
-	private ArrayList<Double> re = new ArrayList<Double>();
 	private ArrayList<String> kw = new ArrayList<String>();
 	private String conceptOutput;
 	private HashMap<String, ArrayList<String>> keywordsAndLinks = new HashMap<String, ArrayList<String>>();
 	private boolean showPreview;
-	private ArrayList<String> previews = new ArrayList<String>();
 	String inputFile;
 	
+	/**
+	 * This is a constructor for the encyclopedia class
+	 * @param file_name this is the file to pull concepts from
+	 * @param showPreviews this is a boolean to say if previews were selected or not
+	 * @throws IOException
+	 * @throws Exception
+	 */
 	public Encyclopedia(String file_name, boolean showPreviews) throws IOException, Exception {
 		inputFile = file_name;
 		showPreview = showPreviews;
@@ -40,11 +48,18 @@ public class Encyclopedia {
 		getLinks(conceptOutput);
 		
 	}
-	
+	/**
+	 * This is a getter for the HashMap of concepts and links
+	 * @return the hashmap
+	 */
 	public HashMap<String, ArrayList<String>> getEncyclopediaHashMap() {
 		return keywordsAndLinks;
 	}
-	
+	/**
+	 * This method pulls concepts from the AlchemyAPI
+	 * @throws Exception
+	 * @throws IOException
+	 */
 	public void getConcepts() throws Exception, IOException{
 		AlchemyAPI alchemyObj = AlchemyAPI.GetInstanceFromFile("api_key.txt");
 		String txtDoc = getFileContents(inputFile);
@@ -53,6 +68,12 @@ public class Encyclopedia {
 		keywordPatternMatcher(conceptOutput);
 	}
 	
+	/**
+	 * This method gets the previews from the url
+	 * @param url this will be a dpPedia URL
+	 * @return
+	 * @throws IOException
+	 */
 	public String getPreview(String url) throws IOException {
 			JSoup j = new JSoup(url);
 			String search = j.getContents();
@@ -63,6 +84,11 @@ public class Encyclopedia {
 
 	}
 	
+	/**
+	 * This method matches the needed content from the output of dpPedia to pull the abstract
+	 * @param output this is the output from JSoup
+	 * @return the preview from the entry
+	 */
 	public String previewMatcher(String output) {
 		Pattern pattern = Pattern.compile("<li><span class=\"literal\"><span property=\"dbo:abstract\" xmlns:dbo=\"http://dbpedia.org/ontology/\" xml:lang=\"en\">(.*)</span></span></li>");
 
@@ -75,7 +101,11 @@ public class Encyclopedia {
 		}
 	}
 	
-	
+	/**
+	 * This method gets the links related to each concept from alchemy output
+	 * @param searchString
+	 * @throws IOException
+	 */
 	public void getLinks(String searchString) throws IOException {
 		String[] eo = searchString.split("<concept>");
 
@@ -97,6 +127,11 @@ public class Encyclopedia {
 		}
 	}
 	
+	/**
+	 * This method matches the links from the output from each concept
+	 * @param output the alchemy content associated with each concept
+	 * @return
+	 */
 	public ArrayList<String> linkPatternMatcher(String output) {
 		ArrayList<String> links = new ArrayList<String>();
 		
@@ -115,6 +150,10 @@ public class Encyclopedia {
 		return links;
 	}
 	
+	/**
+	 * This matches the concepts from the alchemy output
+	 * @param searchString the output from alchemy
+	 */
 	private void keywordPatternMatcher(String searchString) {
 		Pattern pattern = Pattern.compile("<text>(.*)</text>");
 
@@ -124,13 +163,9 @@ public class Encyclopedia {
 			kw.add(match.group(1));
 		}
 		
-		//for (int i=0; i < kw.size(); i++) {
-			//System.out.println(kw.get(i));
-		//}
-		
 	}
 	
-    // utility function
+    // utility function, from a tester class in the Alchemy API
     private static String getFileContents(String filename)
         throws IOException, FileNotFoundException
     {
@@ -153,7 +188,7 @@ public class Encyclopedia {
         return contents.toString();
     }
 
-    // utility method
+    // utility method, from a tester class given with the Alchemy API
     private static String getStringFromDocument(Document doc) {
         try {
             DOMSource domSource = new DOMSource(doc);

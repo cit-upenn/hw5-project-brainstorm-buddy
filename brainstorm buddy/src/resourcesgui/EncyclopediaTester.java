@@ -7,7 +7,11 @@ import java.util.ArrayList;
 
 import org.junit.Before;
 import org.junit.Test;
-
+/**
+ * This is a tester class for the Encyclopedia class
+ * @author meredithmargulies
+ *
+ */
 public class EncyclopediaTester {
 	
 	Encyclopedia e;

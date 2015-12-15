@@ -31,27 +31,49 @@ import org.xml.sax.SAXException;
 
 import com.alchemyapi.api.AlchemyAPI;
 
+/**
+ * This is the class Dictionary
+ * It pulls keywords from the document and gets definitions from Merriam Webster
+ * @author meredithmargulies
+ *
+ */
 public class Dictionary {
+	//instance variables
 	private String fileName;
-	ArrayList<String> kw = new ArrayList<String>();
-	ArrayList<Double> re = new ArrayList<Double>();
-	ArrayList<String> de = new ArrayList<String>();
-	HashMap<String, String> hashMapdefinitions = new HashMap<String, String>();
+	private ArrayList<String> kw = new ArrayList<String>();
+	private ArrayList<String> de = new ArrayList<String>();
+	private HashMap<String, String> hashMapdefinitions = new HashMap<String, String>();
 	
+	/**
+	 * This is a constructor for the Dictionary class
+	 * @param file this is the file to pull keywords from
+	 * @throws Exception
+	 */
 	public Dictionary(String file) throws Exception {
 		fileName = file;
 		getKeywords();
 		getDefinitions();
+		//creates the hash map
 		for (int i=0;i<kw.size(); i++) {
 		hashMapdefinitions.put(kw.get(i), de.get(i));
 		}
 	}
 	
+	/**
+	 * This is a getter for the DictionaryHashMap
+	 * @return the hash map of keywords and definitions
+	 */
 	public HashMap<String, String> getDictionaryHashMap() {
 		return hashMapdefinitions;
 	}
 	
-	
+	/**
+	 * This method pulls keywords from the alchemy API
+	 * @throws IOException
+	 * @throws SAXException
+	 * @throws ParserConfigurationException
+	 * @throws XPathExpressionException
+	 */
 	public void getKeywords() throws IOException, SAXException,
     ParserConfigurationException, XPathExpressionException {
 		
@@ -63,6 +85,10 @@ public class Dictionary {
     
 	}
 	
+	/**
+	 * This method gets each word's definition
+	 * @throws Exception
+	 */
 	public void getDefinitions() throws Exception{
        for(int i =0; i<kw.size(); i++) {
     	   Document xml = callDictionaryAPI(kw.get(i));
@@ -71,6 +97,11 @@ public class Dictionary {
        }
 	}
 	
+	/**
+	 * This method calls the MW API for each word
+	 * @param word this is the word to get the definition of
+	 * @return the XML output from the API
+	 */
 	private Document callDictionaryAPI(String word) {
 		String fixed = word.replace(' ', '_');
 		try {
@@ -88,6 +119,12 @@ public class Dictionary {
 		
 	}
 	
+	/**
+	 * This parses the xml for the definition
+	 * @param xmlDoc this is the output from the API
+	 * @return the definition of the word
+	 * @throws Exception
+	 */
 	public String getKeywordDefinition(Document xmlDoc) throws Exception {
                 Document doc = xmlDoc;
 				doc.getDocumentElement().normalize();
@@ -110,6 +147,11 @@ public class Dictionary {
         
 	}
 	
+	/**
+	 * This method is a matcher to get each keyword from the alchemy output
+	 * @param searchString this is the string of output
+	 * @return the word
+	 */
 	public ArrayList<String> keywordPatternMatcher(String searchString) {
 		ArrayList<String> keywords = new ArrayList<String>();
 		Pattern pattern = Pattern.compile("<text>(.*)</text>");
@@ -126,7 +168,7 @@ public class Dictionary {
 		
 	}
 	
-    // utility function
+    // utility function, from API tester classes given with API
     private static String getFileContents(String filename)
         throws IOException, FileNotFoundException
     {
@@ -149,7 +191,7 @@ public class Dictionary {
         return contents.toString();
     }
 
-    // utility method
+    // utility method, from Alchemy tester classes given with API
     private static String getStringFromDocument(Document doc) {
         try {
             DOMSource domSource = new DOMSource(doc);

@@ -7,7 +7,11 @@ import java.util.ArrayList;
 
 import org.junit.Before;
 import org.junit.Test;
-
+/**
+ * This is a class for the NewsSources class
+ * @author meredithmargulies
+ *
+ */
 public class NewsSourcesTester {
 	
 		NewsSources ns;
