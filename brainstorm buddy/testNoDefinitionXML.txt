@@ -1,0 +1,6 @@
+<dictionary>
+	<entry>
+		<word>apple</word>
+		<ety>:comes from some country</ety>
+	</entry>
+</dictionary>

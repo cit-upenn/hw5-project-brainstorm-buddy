@@ -50,7 +50,6 @@ public class Encyclopedia {
 		String txtDoc = getFileContents(inputFile);
 		Document doc = alchemyObj.TextGetRankedConcepts(txtDoc);
 		conceptOutput = getStringFromDocument(doc);
-		System.out.println(conceptOutput);
 		keywordPatternMatcher(conceptOutput);
 	}
 	
@@ -64,8 +63,7 @@ public class Encyclopedia {
 
 	}
 	
-	private String previewMatcher(String output) {
-		//Pattern pattern = Pattern.compile("<p>(.*)</p>");
+	public String previewMatcher(String output) {
 		Pattern pattern = Pattern.compile("<li><span class=\"literal\"><span property=\"dbo:abstract\" xmlns:dbo=\"http://dbpedia.org/ontology/\" xml:lang=\"en\">(.*)</span></span></li>");
 
 		Matcher match = pattern.matcher(output);
@@ -99,7 +97,7 @@ public class Encyclopedia {
 		}
 	}
 	
-	private ArrayList<String> linkPatternMatcher(String output) {
+	public ArrayList<String> linkPatternMatcher(String output) {
 		ArrayList<String> links = new ArrayList<String>();
 		
 		Pattern pattern = Pattern.compile("(http://.*)</");

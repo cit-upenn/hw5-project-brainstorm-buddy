@@ -62,7 +62,6 @@ public class NewsSources {
 	
 	public void getAllNewsStories() throws IOException {
 		for (String s: kw) {
-			System.out.println(s);
 			if(newYorkTimes) {
 				kwlink.put(s, getNYTNewsStories(s));
 			} else if(jstor) {
@@ -82,7 +81,7 @@ public class NewsSources {
 		return allWordLinks;
 	}
 	
-	private ArrayList<String> linkMatcher(String siteContents) {
+	public ArrayList<String> linkMatcher(String siteContents) {
 			//Pattern pattern = Pattern.compile("<p>(.*)</p>");
 			ArrayList<String> articleLinks = new ArrayList<String>();
 			Pattern pattern = Pattern.compile("href=\"(http://www.jstor.org/stable/.*)\"");
@@ -101,8 +100,18 @@ public class NewsSources {
 			return articleLinks;
 		}
 	
-	
-	public ArrayList<String> getNYTNewsStories(String word) {
+	public ArrayList<String> parseOutput(String JSON) {
+		ArrayList<String> wordLinks = new ArrayList<String>();
+		JSONObject js = new JSONObject(JSON);
+    	JSONArray links = js.getJSONObject("response").getJSONArray("docs");
+    	for(int i = 0; i < links.length(); i++) {
+    		JSONObject link = links.getJSONObject(i);
+    		String linkText = link.getString("web_url");
+    		wordLinks.add(linkText);
+    	}
+    	return wordLinks;
+	}
+	private ArrayList<String> getNYTNewsStories(String word) {
 			ArrayList<String> allWordLinks = new ArrayList<String>();
 			String searchTerm = word.replace(' ', '+');
 			//String searchTerm = "barack+obama";
@@ -118,18 +127,13 @@ public class NewsSources {
 		                                myConnection.getInputStream()));
 		        
 		        while ((results = in.readLine()) != null) {
-		        	js = new JSONObject(results);
-		        	JSONArray links = js.getJSONObject("response").getJSONArray("docs");
-		        	for(int i = 0; i < links.length(); i++) {
-		        		JSONObject link = links.getJSONObject(i);
-		        		String linkText = link.getString("web_url");
-		        		allWordLinks.add(linkText);
-		        	}
+		        	allWordLinks = parseOutput(results);
 		        }
 
 			} catch (MalformedURLException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
+				System.out.println();
 				e.printStackTrace();
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block

@@ -1,0 +1,8 @@
+<dictionary>
+	<entry>
+		<word>apple</word>
+		<dt>:a fleshy fruit</dt>
+		<dt>:a red fruit with seeds</dt>
+		<ety>:comes from some country</ety>
+	</entry>
+</dictionary>
