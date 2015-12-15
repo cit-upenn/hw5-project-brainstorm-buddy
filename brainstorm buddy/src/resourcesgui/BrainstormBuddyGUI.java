@@ -17,6 +17,11 @@ import javax.swing.plaf.synth.SynthSeparatorUI;
 /* TopLevelDemo.java requires no other files. */
 public class BrainstormBuddyGUI implements ActionListener, MouseListener{
 	//Declare elements
+	
+	/**
+	 * This is the interface variable that will be used to set various
+	 * booleans to determine which resources will be pulled from which APIs
+	 */
 	private BrainStormBuddyChoices bsbc = new BrainStormBuddyChoices();
 	
 	private JFrame frame;
@@ -24,11 +29,9 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
 	private JMenuBar menuBar;
 	private JMenu file;
 	private JMenuItem open,save;
-	
 	private JScrollPane textScroll; 
-	
 	private JTextArea textArea;
-	private JPanel checkBoxPanel, encycSettingPanel, newsOptionsPanel;;//Encyclopedia, Dictionary, Websites 
+	private JPanel checkBoxPanel, encycSettingPanel, newsOptionsPanel;;//Encyclopedia, Dictionary, News 
 	private JCheckBox encyc, news, dict;
 	private JComboBox<String> newsSourceOptions;
 	private JComboBox<String> encycOptions;
@@ -36,11 +39,11 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
 	private String [] newsSources = {"New York Times", "JStor"};
 	private String [] encycSettings = {"","Snippets and Links", "Just Links"};
 	private JButton createResources;
-	private GridLayout tester = new GridLayout(3,2);
+	private GridLayout myLayout = new GridLayout(3,2);
     private final int WINDOW_HEIGHT = 570;
     private final int WINDOW_WIDTH = 700;
     
-    //creating resource pane instance variables
+    //creating resource frame instance variables
     private JFrame resourceFrame;
     private JMenuBar resourceMenuBar; 
     private JMenuItem saveResources;
@@ -49,8 +52,14 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
     private JScrollPane resourceScroll; 
     
 
+    /**
+     * Constructor for the BrainstormBuddyGUI
+     * initializes all instance variables, sets layouts for containers
+     * adds elements to containers, instantiates listeners, adds listeners
+     * to buttons/menu items etc. 
+     */
     public BrainstormBuddyGUI(){
-    	//everything for resource pane
+    	//everything for resource frame
     	resourceFrame = new JFrame("Resources from Brainstorm");
     	resourceFrame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
     	resourceFrame.setLayout(new BorderLayout());
@@ -70,17 +79,18 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
     	
     	//initialize elements
     	frame = new JFrame("Brainstorm Buddy");
+    	
     	menuBar = new JMenuBar();
     	file = new JMenu("File");
     	open = new JMenuItem("Open previous Brainstorm");
     	save = new JMenuItem("Save current Brainstorm");
-//    	encycLinks = new JRadioButton("Just Links");
-//    	snippet = new JRadioButton("Snippets and Links");
     	fileChooser = new JFileChooser();
+    	
     	textArea = new JTextArea();
     	textArea.setEditable(true);
     	textArea.setLineWrap(true);
     	textArea.setWrapStyleWord(true);
+    	
     	checkBoxPanel = new JPanel();
     	newsOptionsPanel = new JPanel();
     	encyc = new JCheckBox("Encyclopedia");
@@ -90,7 +100,6 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
     	newsSourceOptions = new JComboBox<>(newsSources);
     	encycOptions = new JComboBox<>(encycSettings);
     	createResources = new JButton("Create Resource Document");
-    	
     	textScroll = new JScrollPane(textArea);
     	
     	//set layouts
@@ -98,8 +107,8 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
     	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	checkBoxPanel.setLayout(new GridLayout(10,1));
     	checkBoxPanel.setBorder(new TitledBorder(new EtchedBorder(), "Resource Options"));
-    	encycSettingPanel.setLayout(tester);
-    	newsOptionsPanel.setLayout(tester);
+    	encycSettingPanel.setLayout(myLayout);
+    	newsOptionsPanel.setLayout(myLayout);
     	createResources.setBorder(BorderFactory.createRaisedBevelBorder());
     	createResources.setSize(WINDOW_WIDTH,100);
     	frame.setMinimumSize(new Dimension(400,600));
@@ -155,12 +164,17 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
     	save.addActionListener(sfl);
     }
    
+    
+    /** 
+     * Will run, and display the GUI
+     * This is taken from an Oracle training on Swing
+     * @param args
+     */
     public static void main(String[] args) {
         //Schedule a job for the event-dispatching thread:
         //creating and showing this application's GUI.
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-//                createAndShowGUI();
             	BrainstormBuddyGUI bb = new BrainstormBuddyGUI();
             }
         });
@@ -170,13 +184,19 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
 	public void mouseClicked(MouseEvent e) {
 		
 	}
-
+	/**
+	 * Changes the border around the create resources button 
+	 * lowers the bevel when mouse pressed
+	 */
 	@Override
 	public void mousePressed(MouseEvent e) {
 		createResources.setBorder(BorderFactory.createLoweredBevelBorder());
 		//connect to resource parser
 	}
-
+	/**
+	 * Changes the border around the create resources button 
+	 *  heightens the bevel when mouse released
+	 */
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		createResources.setBorder(BorderFactory.createRaisedBevelBorder());
@@ -192,48 +212,49 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
 	public void mouseExited(MouseEvent e) {
 		
 	}
-
+	
+	
+	/**
+	 * Decides what to do based on which element is clicked/selected
+	 * Sets booleans within the brainstorm buddy choice (bsbc) object
+	 * to set which resources will be pulled for the user. 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent which) {
-		//open, save menu items dealt with separately
 		//encyclopedia option
 		 if (which.getSource().equals(encyc)){
 			 if(encyc.isSelected()){
 				bsbc.setEncyclopedia(true);
-//				 System.out.println("button is selected");				 
+				//set encyclopedia master boolean false
 			 } else {
 				 bsbc.setEncyclopedia(false);
-				 //set some encyclopedia master boolean false
-				//encycOptions booleans are irrelevant? 
-//				 System.out.println("button is not selected");
+				 //set encyclopedia master boolean false
 				
 			 } 
 		 }
+		 //these only do anything if the master encyclopedia boolean is true
 		 if (which.getSource().equals(encycOptions)){
 			 int index = encycOptions.getSelectedIndex();
 			 switch(index){
 			 	case(1):{
-			 		//set some boolean true, others false
+			 		//set preview boolean true
 			 		bsbc.setPreview(true);
-			 		System.out.println("Snippets");
 			 		break;
 			 	}
 			 	case(2):{
-			 		//set some boolean true, others false
+			 		//set preview boolean false (just links)
 			 		bsbc.setPreview(false);
-			 		System.out.println("Just Links");
 			 		break;
 			 	}
 			 }
 		 }
 		 if (which.getSource().equals(dict)){
 			 if (dict.isSelected()){
-				 //set some boolean true
+				 //set dictionary boolean true
 				 bsbc.setDictionary(true);
-				 System.out.println("dictionary button");
 			 }
 			 else{
-				 //set some boolean false
+				 //set dictionary boolean false
 				 bsbc.setDictionary(false);
 			 }
 			 
@@ -243,65 +264,46 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
 		 
 		 if (which.getSource().equals(news)){
 			 if(news.isSelected()){
+				 //set master news boolean true
 				bsbc.setNewsSources(true);
-				System.out.println("news selected");
 			 } else {
 				 bsbc.setNewsSources(false);
-				 //set some encyclopedia master boolean false
-				//encycOptions booleans are irrelevant? 
+				 //set master news boolean false
 				
 			 } 
 		 }
+		 //will only matter if master news boolean is true
 		 if (which.getSource().equals(newsSourceOptions)){
 			 int index = newsSourceOptions.getSelectedIndex();
 			 switch(index){
 			 	case(0):{
-			 		//set some boolean true, others false
+			 		//set NYT boolean true, JStor false
 			 		bsbc.setNewYorktimes(true);
 			 		bsbc.setJstor(false);
-			 		System.out.println("New York Times");
+//			 		System.out.println("New York Times");
 			 		break;
 			 	}
 			 	case(1):{
-			 		//set some boolean true, others false
+			 		//set NYT boolean true, JStor false
 			 		bsbc.setJstor(true);
 			 		bsbc.setNewYorktimes(false);
-			 		System.out.println("JStor");
+//			 		System.out.println("JStor");
 			 		break;
 			 	}
 			 }
 		 }
-//		 if (which.getSource().equals(newsSourceOptions)){
-//				if(news.isSelected()){
-//					//can get rid of, put it all in if which == news and news.isSelected()
-//					int index = newsSourceOptions.getSelectedIndex();
-//					switch(index){
-//				 		case(0):{
-//				 			//set some boolean true, others false
-//				 			System.out.println("BBC selected");
-//				 			break;
-//				 		}
-//				 		case(1):{
-//				 			//set some boolean true, others false
-//				 			System.out.println("Google Scholar selected");
-//				 			break;
-//				 		}
-//				 		case(2):{
-//				 			//set some boolean true, others false
-//				 			System.out.println("CNN selected");
-//				 			break;
-//				 		}
-//				 	
-//					}
-//				}
-//			 }
+
 		
 	}
 	
+	/**
+	 * inner class for open file listener - to open files when selected through the menu
+	 * @author gabecolton
+	 *
+	 */
 	class OpenFileListener implements ActionListener {
 
 		public void actionPerformed(ActionEvent which) {
-			// TODO Auto-generated method stub
 			if(which.getSource().equals(open)){
 				if (JFileChooser.APPROVE_OPTION == fileChooser.showOpenDialog(frame)) {
 					textArea.setText("");
@@ -324,13 +326,15 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
 					}
 				}
 			}
+			//creates a temporary file from the data in the text area
+			//and passes it to the brainstorm buddy choices object
+			//then pops up the resources frame. 
 			if(which.getSource().equals(createResources)){
 				resourceTextArea.setText("");
 				
 				File resultsFile;
 				Scanner resultsIn = null;
 				File tempFile = generateTempFileFromTextArea(textArea.getText());
-//				System.out.println(textArea.getText());
 				bsbc.gatherResources(tempFile.getName());
 				resourceFrame.setVisible(true);
 				try{
@@ -352,6 +356,11 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
 		}
 	}
 	
+	/**
+	 * Will save whichever text area's save menu is selected
+	 * @author gabecolton
+	 *
+	 */
 	class SaveFileListener implements ActionListener {
 		
 		public void actionPerformed(ActionEvent which) {
@@ -395,6 +404,13 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
 		}
 	}
 	
+	/**
+	 * given a string, will create a temporary file in the current directory
+	 * so that it is readily accesible to the bsbc object
+	 * with that string as its contents
+	 * @param textAString the string to be written to the temporary file
+	 * @return  a temporary file in the current directory
+	 */
 	public File generateTempFileFromTextArea(String textAString){
 		File temp= null;
 		String currentDir;
@@ -418,6 +434,10 @@ public class BrainstormBuddyGUI implements ActionListener, MouseListener{
 	
 	}
 	
+	/**
+	 * Used to test file contents
+	 * @param f the file to be printed
+	 */
 	public void printFile (File f){
 		Scanner in = null;
 		try
